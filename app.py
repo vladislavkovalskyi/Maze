@@ -6,7 +6,7 @@ from pprint import pprint
 import keyboard
 
 
-def get_generated_maze(size = 15):
+def get_generated_maze(size=15):
     columns, rows = size, size
     maze = [[1 for _ in range(columns)] for _ in range(rows)]
     maze[-3][0] = 0  # Вход
@@ -75,7 +75,6 @@ def check_coin(maze: list, maze_size: int, player_position: list):
 def movement(maze: list, player_position: list, maze_size: int):
     coins = 0
     while True:
-
         copied_maze = copy.deepcopy(maze)
         copied_maze[player_position[0]][player_position[1]] = 2
         os.system("cls")
@@ -85,20 +84,18 @@ def movement(maze: list, player_position: list, maze_size: int):
         if key_pressed.event_type == keyboard.KEY_DOWN:
             if key_pressed.name == "a" and player_position[1] > 0:
                 player_position[1] -= 1
-            elif key_pressed.name == "d" and player_position[1] < maze_size-1:
+            elif key_pressed.name == "d" and player_position[1] < maze_size - 1:
                 player_position[1] += 1
             elif key_pressed.name == "w" and player_position[0] > 0:
                 player_position[0] -= 1
-            elif key_pressed.name == "s" and player_position[0] < maze_size-1:
+            elif key_pressed.name == "s" and player_position[0] < maze_size - 1:
                 player_position[0] += 1
             elif key_pressed.name == "e":
                 exit(0)
-            
+
             if check_coin(maze, maze_size, player_position):
                 maze[player_position[0]][player_position[1]] = 0
                 coins += 1
-
-            
 
 
 def main():
@@ -106,7 +103,7 @@ def main():
     generated_maze = get_generated_maze(SIZE)
     fill_maze_with_coins(generated_maze, chance=0.1)
     maze = copy.deepcopy(generated_maze)
-    player_position = [SIZE-3, 0]
+    player_position = [SIZE - 3, 0]
 
     movement(maze, player_position, SIZE)
 
