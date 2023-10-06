@@ -40,7 +40,6 @@ def get_generated_maze(size=15):
         if not found:
             stack.pop()
 
-    # Чтобы никогда не было стенки перед выходом
     maze[-3][1] = 0  # Для входа
     maze[2][-2] = 0  # Для выхода
 
